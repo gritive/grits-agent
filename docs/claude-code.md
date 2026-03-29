@@ -73,6 +73,17 @@ All hooks use `grits hook` subcommands — no external dependencies (python, jq,
 
 28 tools for task management, OKR tracking, and work lifecycle. See [MCP docs](mcp.md) for the full list.
 
+## Project Scoping
+
+Run `grits init` in your project directory to scope MCP tools to a specific Grits project:
+
+```bash
+grits init                      # List projects
+grits init --project <ID>       # Create .grits.json
+```
+
+This creates `.grits.json` in the project root. MCP tools (`task_context`, `task_next`, `task_list`, `work_start`, etc.) will automatically filter to this project.
+
 ## Usage
 
 Once connected, Claude can:

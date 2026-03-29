@@ -92,6 +92,15 @@ grits tag list                  # List tags
 grits tag create --name "..."   # Create tag
 ```
 
+### Project Mapping
+
+```bash
+grits init                      # List projects for selection
+grits init --project <id>       # Create .grits.json in current directory
+```
+
+Creates `.grits.json` with the project ID. MCP tools (`task_context`, `task_next`, `task_list`, etc.) automatically scope to this project.
+
 ### Configuration
 
 ```bash
