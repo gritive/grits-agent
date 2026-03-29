@@ -51,4 +51,11 @@ See setup guides:
 
 ## Claude Code Plugin
 
-See [`claude-plugin/`](claude-plugin/) for the Claude Code plugin configuration.
+```bash
+# 1. Install CLI
+brew tap gritive/tap && brew install grits
+
+# 2. Add marketplace & install plugin
+claude plugin marketplace add gritive/grits-agent
+claude plugin install grits
+```
