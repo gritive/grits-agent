@@ -28,10 +28,10 @@ grits auth login
 ### 2. Use CLI
 
 ```bash
-grits next              # Next task to work on
-grits task list         # List my tasks
-grits done <TASK_ID>    # Complete a task
-grits context           # Current work context
+grits task list                          # List my tasks
+grits task update <ID> --status IN_PROGRESS  # Start a task
+grits task done <ID>                     # Complete a task
+grits dashboard summary                  # Current work summary
 ```
 
 ### 3. Connect as MCP Server

@@ -5,7 +5,11 @@
 ### Option 1: Claude Code Plugin (Recommended)
 
 ```bash
-claude plugin add github:gritive/grits-agent/claude-plugin
+# 마켓플레이스 등록 (최초 1회)
+claude plugin marketplace add gritive/grits-agent
+
+# 플러그인 설치
+claude plugin install grits
 ```
 
 This installs everything at once:
