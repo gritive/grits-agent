@@ -1,0 +1,6 @@
+{
+  "grits": {
+    "command": "grits",
+    "args": ["mcp"]
+  }
+}
