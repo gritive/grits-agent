@@ -18,5 +18,5 @@ Add to your Windsurf MCP settings:
 ## Prerequisites
 
 1. Install: `brew tap gritive/tap && brew install grits`
-2. Authenticate: `grits login`
+2. Authenticate: `grits auth login`
 3. Restart Windsurf after adding MCP configuration

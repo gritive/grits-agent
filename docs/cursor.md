@@ -18,5 +18,5 @@ Add to your Cursor MCP settings (`.cursor/mcp.json`):
 ## Prerequisites
 
 1. Install: `brew tap gritive/tap && brew install grits`
-2. Authenticate: `grits login`
+2. Authenticate: `grits auth login`
 3. Restart Cursor after adding MCP configuration

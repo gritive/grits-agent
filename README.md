@@ -1,6 +1,6 @@
 # Grits Agent
 
-CLI & MCP Server for [Grits](https://grits.so) — Agentic PM & OKR platform.
+CLI & MCP Server for [Grits](https://grits.gritive.com) — Agentic PM & OKR platform.
 
 Manage tasks, track OKR progress, and connect AI agents to Grits without leaving your terminal.
 
@@ -22,7 +22,7 @@ Download the latest binary from [Releases](https://github.com/gritive/grits-agen
 ### 1. Authenticate
 
 ```bash
-grits login
+grits auth login
 ```
 
 ### 2. Use CLI

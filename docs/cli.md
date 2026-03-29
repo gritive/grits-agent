@@ -2,21 +2,21 @@
 
 ## Global Flags
 
-| Flag | Short | Description |
-|------|-------|-------------|
-| `--output` | `-o` | Output format: json, table, yaml (default: json) |
-| `--profile` | `-p` | Use a specific profile |
-| `--server` | | Override server URL |
-| `--workspace` | `-w` | Override workspace ID |
-| `--verbose` | `-v` | Show request/response details |
-| `--field` | `-f` | Extract a single field value |
+| Flag          | Short | Description                                      |
+| ------------- | ----- | ------------------------------------------------ |
+| `--output`    | `-o`  | Output format: json, table, yaml (default: json) |
+| `--profile`   | `-p`  | Use a specific profile                           |
+| `--server`    |       | Override server URL                              |
+| `--workspace` | `-w`  | Override workspace ID                            |
+| `--verbose`   | `-v`  | Show request/response details                    |
+| `--field`     | `-f`  | Extract a single field value                     |
 
 ## Commands
 
 ### Authentication
 
 ```bash
-grits login                     # Authenticate with Grits
+grits auth login                     # Authenticate with Grits
 grits config list               # List profiles
 grits config set-profile <name> # Switch profile
 ```
@@ -51,6 +51,16 @@ grits okr dashboard <cycle-id>  # OKR dashboard
 
 ```bash
 grits mcp                       # Start MCP server (stdin/stdout)
+```
+
+### Hook Helpers
+
+Used by Claude Code plugin hooks. Not intended for direct use.
+
+```bash
+grits hook pre-edit             # Check work registration before code edits (stdin: TOOL_INPUT)
+grits hook post-commit          # Auto-comment Grits task after git commit (stdin: TOOL_INPUT)
+grits hook session-end          # Show active task info + cleanup on session end
 ```
 
 ### Other

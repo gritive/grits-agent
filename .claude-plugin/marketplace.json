@@ -2,11 +2,11 @@
   "name": "grits-agent",
   "owner": {
     "name": "Gritive",
-    "email": "support@grits.so"
+    "email": "charlie.choe@gritive.com"
   },
   "metadata": {
     "description": "Grits — Agentic PM & OKR platform plugins",
-    "version": "1.0.0"
+    "version": "0.1.3"
   },
   "plugins": [
     {

@@ -12,31 +12,31 @@ grits mcp
 
 ## Available Tools
 
-| Tool | Description |
-|------|-------------|
-| `task_next` | Get next prioritized task |
-| `task_context` | Current work context (in-progress + today's schedule) |
-| `task_list` | List tasks with filters |
-| `task_get` | Get task details |
-| `task_create` | Create a new task |
-| `task_update` | Update task status/fields |
-| `task_done` | Mark task as complete |
-| `task_comment` | Add comment to task |
-| `task_report` | Task summary report |
-| `task_batch_create` | Create multiple tasks at once |
-| `work_start` | Start working on a task (high-level) |
-| `work_done` | Finish current work (high-level) |
-| `dashboard_insights` | Dashboard summary |
-| `tag_list` | List tags |
-| `tag_create` | Create a tag |
-| `milestone_link` | Link task to milestone |
-| `kr_link` | Link task to Key Result |
-| `share_link_create` | Create a share link |
+| Tool                 | Description                                           |
+| -------------------- | ----------------------------------------------------- |
+| `task_next`          | Get next prioritized task                             |
+| `task_context`       | Current work context (in-progress + today's schedule) |
+| `task_list`          | List tasks with filters                               |
+| `task_get`           | Get task details                                      |
+| `task_create`        | Create a new task                                     |
+| `task_update`        | Update task status/fields                             |
+| `task_done`          | Mark task as complete                                 |
+| `task_comment`       | Add comment to task                                   |
+| `task_report`        | Task summary report                                   |
+| `task_batch_create`  | Create multiple tasks at once                         |
+| `work_start`         | Start working on a task (high-level)                  |
+| `work_done`          | Finish current work (high-level)                      |
+| `dashboard_insights` | Dashboard summary                                     |
+| `tag_list`           | List tags                                             |
+| `tag_create`         | Create a tag                                          |
+| `milestone_link`     | Link task to milestone                                |
+| `kr_link`            | Link task to Key Result                               |
+| `share_link_create`  | Create a share link                                   |
 
 ## Prerequisites
 
 1. Install Grits CLI: `brew tap gritive/tap && brew install grits`
-2. Authenticate: `grits login`
+2. Authenticate: `grits auth login`
 
 ## Configuration
 
