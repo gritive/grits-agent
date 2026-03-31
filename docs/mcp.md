@@ -24,6 +24,11 @@ grits mcp
 | `task_comment`       | Add comment to task                                   |
 | `task_report`        | Task summary report                                   |
 | `task_batch_create`  | Create multiple tasks at once                         |
+| `project_list`       | List projects                                         |
+| `project_get`        | Get project details                                   |
+| `project_create`     | Create a new project                                  |
+| `project_update`     | Update project name/description                       |
+| `project_delete`     | Delete a project (soft delete)                        |
 | `work_start`         | Start working on a task (high-level)                  |
 | `work_done`          | Finish current work (high-level)                      |
 | `dashboard_insights` | Dashboard summary                                     |

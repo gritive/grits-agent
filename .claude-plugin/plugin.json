@@ -1,9 +1,8 @@
 {
   "name": "grits",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Grits — Agentic PM & OKR platform. Track tasks, OKR progress, and manage projects.",
   "author": {
     "name": "Gritive"
-  },
-  "hooks": "./hooks/hooks.json"
+  }
 }
