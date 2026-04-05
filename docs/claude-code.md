@@ -5,17 +5,17 @@
 ### Option 1: Claude Code Plugin (Recommended)
 
 ```bash
-# 마켓플레이스 등록 (최초 1회)
+# Register from marketplace (one-time)
 claude plugin marketplace add gritive/grits-agent
 
-# 플러그인 설치
+# Install plugin
 claude plugin install grits
 ```
 
 This installs everything at once:
 - **MCP Server** — `grits mcp` for task/OKR management
 - **Hooks** — PreToolUse (work registration), PostToolUse (commit auto-comment), Stop (session end cleanup)
-- **Skills** — `/start` (작업 시작 워크플로우), `/done` (작업 완료 워크플로우), `/workflow` (Grits 가이드)
+- **Skills** — `/start` (start work workflow), `/done` (complete work workflow), `/workflow` (Grits guide)
 
 ### Option 2: Manual MCP Configuration
 
@@ -65,9 +65,9 @@ All hooks use `grits hook` subcommands — no external dependencies (python, jq,
 
 | Skill | Trigger | Description |
 | --- | --- | --- |
-| `/start` | "작업 시작", "다음 할 일" | 현황 파악 → 태스크 선택 → 설명 작성 → work_start → 구현 |
-| `/done` | "작업 완료", "끝" | 검증 → 커밋 → task_done → 다음 추천 |
-| `/workflow` | "grits workflow" | Grits 워크플로우 가이드 |
+| `/start` | "start work", "what's next" | Check status → select task → write description → work_start → implement |
+| `/done` | "task complete", "done" | Verify → commit → task_done → suggest next |
+| `/workflow` | "grits workflow" | Grits workflow guide |
 
 ### MCP Tools
 

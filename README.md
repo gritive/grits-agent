@@ -1,61 +1,118 @@
 # Grits Agent
 
-CLI & MCP Server for [Grits](https://grits.gritive.com) — Agentic PM & OKR platform.
+**Agentic PM for your terminal** — auto-track tasks, align work to OKR, get smart next-task recommendations.
 
-Manage tasks, track OKR progress, and connect AI agents to Grits without leaving your terminal.
+[Grits](https://grits.gritive.com) turns Claude Code into a project-aware agent. Write code, and Grits tracks what you did, links it to your OKR, and tells you what to do next.
+
+> **🌱 Early Access — 10 teams** We're looking for 10 AI-native dev teams to join our founding cohort. Free forever.
+> → [Apply at grits.gritive.com/signup](https://grits.gritive.com/signup)
+
+## What It Does
+
+- **Auto-tracking**: Code changes are automatically linked to tasks via hooks — no manual updates
+- **Smart start**: `/grits:start` scans your backlog, today's schedule, and code TODOs to recommend your next high-impact task
+- **OKR alignment**: Tasks auto-link to milestones and key results, so daily work connects to strategy
+- **Completion flow**: `/grits:done` validates, commits, updates Grits, and suggests what's next
 
 ## Installation
 
-### Homebrew (macOS & Linux)
+### 1. Install CLI
 
 ```bash
-brew tap gritive/tap
-brew install grits
+brew tap gritive/tap && brew install grits
 ```
 
-### Manual Download
-
-Download the latest binary from [Releases](https://github.com/gritive/grits-agent/releases).
-
-## Quick Start
-
-### 1. Authenticate
+### 2. Authenticate
 
 ```bash
 grits auth login
 ```
 
-### 2. Use CLI
+### 3. Install Claude Code Plugin
 
 ```bash
-grits task list                          # List my tasks
-grits task update <ID> --status IN_PROGRESS  # Start a task
-grits task done <ID>                     # Complete a task
-grits dashboard summary                  # Current work summary
+claude plugin install grits-agent/grits
 ```
 
-### 3. Connect as MCP Server
+## Quick Start
 
-Grits CLI includes a built-in MCP (Model Context Protocol) server for AI agent integration.
+After installing, just start coding. The plugin hooks will remind you to register work when you edit files.
 
-See setup guides:
-- [Claude Code / Claude Desktop](docs/claude-code.md)
+Or explicitly:
+
+```
+/grits:start          # See what to work on next
+/grits:done           # Finish current task with validation
+/grits:workflow       # Learn the full workflow
+```
+
+### CLI Examples
+
+```bash
+grits task list -o table              # List tasks (human-readable)
+grits task get <ID> -o table          # Task detail card
+grits task create --title "Fix bug"   # Create a task
+grits task done <ID>                  # Mark complete
+grits dashboard summary               # Work summary
+```
+
+## How It Works
+
+```
+You code ──→ Hook detects edit ──→ Grits asks "what are you working on?"
+                                          │
+                                    work_start()
+                                          │
+                                    Task → IN_PROGRESS
+                                    Link → Milestone + KR
+                                          │
+You finish ──→ /grits:done ──→ Validate → Commit → task_done()
+                                          │
+                                    Suggest next task
+```
+
+**3 Hooks** keep you on track:
+- `PreToolUse` — reminds to register work before code edits
+- `PostToolUse` — auto-comments commits to linked tasks
+- `Stop` — session summary on exit
+
+**3 Skills** guide the workflow:
+- `/grits:start` — find and start the right task
+- `/grits:done` — validate, commit, complete
+- `/grits:workflow` — reference guide
+
+## MCP Server
+
+Grits CLI includes a built-in MCP server with 28 tools for AI agent integration.
+
+```bash
+grits mcp   # Start MCP server (stdin/stdout)
+```
+
+Setup guides for other editors:
 - [Cursor](docs/cursor.md)
 - [Windsurf](docs/windsurf.md)
-- [General MCP Setup](docs/mcp.md)
+- [General MCP](docs/mcp.md)
 
 ## Documentation
 
-- [CLI Reference](docs/cli.md)
-- [MCP Server](docs/mcp.md)
+- [CLI Reference](docs/cli.md) — all commands and flags
+- [MCP Server](docs/mcp.md) — tool list and configuration
+- [Claude Code Setup](docs/claude-code.md) — detailed integration guide
 
-## Claude Code Plugin
+## Early Access
 
-```bash
-# 1. Install CLI
-brew tap gritive/tap && brew install grits
+We're actively recruiting 10 AI-native development teams for our founding cohort.
 
-# 2. Add marketplace & install plugin
-claude plugin marketplace add gritive/grits-agent
-claude plugin install grits
-```
+**What you get:**
+- Free forever (no credit card, no catch)
+- Direct line to the founding team — your feedback shapes the roadmap
+- Early adopter badge on your team profile
+
+**Who we're looking for:** Teams that use Claude Code, Cursor, or Windsurf daily and want PM tooling that lives in the terminal.
+
+[Sign up at grits.gritive.com](https://grits.gritive.com/signup) — 10 spots, first come first served.
+
+---
+
+If this is useful, a ⭐ helps others find it.

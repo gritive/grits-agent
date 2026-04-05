@@ -5,13 +5,13 @@
     "email": "charlie.choe@gritive.com"
   },
   "metadata": {
-    "description": "Grits — Agentic PM & OKR platform plugins",
-    "version": "0.1.7"
+    "description": "Agentic PM for Claude Code — auto-track tasks, link work to OKR, get smart recommendations.",
+    "version": "0.1.8"
   },
   "plugins": [
     {
       "name": "grits",
-      "description": "Grits MCP Server — Track tasks, OKR progress, and manage projects from Claude Code.",
+      "description": "Turn Claude Code into a project-aware agent. Tasks auto-track from code changes, OKR alignment happens invisibly, and /grits:start picks your next high-impact work.",
       "source": "./"
     }
   ]

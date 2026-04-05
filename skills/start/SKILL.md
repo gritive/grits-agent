@@ -1,116 +1,116 @@
 ---
-description: "다음 작업 확인 → 선택 → 설명 작성 → 시작하는 Grits 워크플로우. '다음 할 일 뭘까?', '작업 시작', 'grits start' 등으로 호출."
+description: "Check next tasks → select → write description → start. Triggers on: 'what should I work on?', 'start work', 'grits start', 'next task'."
 ---
 
-# Grits 작업 시작 워크플로우
+# Grits Start Work Workflow
 
-## 1단계: 전체 현황 파악
+## Step 1: Gather Current Status
 
-**4가지 소스에서 작업을 수집합니다.** 모든 조회는 MCP 도구를 사용합니다.
+**Collect tasks from 4 sources.** Use MCP tools for all queries.
 
 ```
-# 1. 현재 컨텍스트 (내 진행중 + 오늘) — 이어서 할 작업
+# 1. Current context (my in-progress + today) — tasks to continue
 task_context()
 
-# 2. TO_DO (이미 계획된 작업)
+# 2. TO_DO (already planned)
 task_list(status: "TO_DO", page_size: "10")
 
-# 3. BACKLOG (아직 계획 안 된 작업)
+# 3. BACKLOG (not yet planned)
 task_list(status: "BACKLOG", page_size: "10")
 ```
 
-코드 내 TODO/FIXME도 확인합니다:
+Also check for code TODOs/FIXMEs:
 ```bash
-grep -rn "TODO\|FIXME" internal/ frontend/src/ --include="*.go" --include="*.svelte" --include="*.ts" | grep -v _test | head -10
+grep -rn "TODO\|FIXME" src/ --include="*.ts" --include="*.js" --include="*.py" --include="*.go" | head -10
 ```
 
-보여줄 내용:
-1. **진행중** — 이어서 할 수 있는 작업 (현재 구현 상황 확인)
-2. **오늘/예정** — 마감이 있는 작업
-3. **할 일 (TO_DO)** — 이미 계획된 작업
-4. **백로그** — 아직 계획 안 된 작업
-5. **코드 TODO** — 코드에 남은 TODO/FIXME 주석
-6. **새 작업** — 지금 떠오른 것
+Present to the user:
+1. **In Progress** — tasks that can be continued (check current implementation state)
+2. **Today/Scheduled** — tasks with deadlines
+3. **To Do (TO_DO)** — already planned tasks
+4. **Backlog** — not yet planned tasks
+5. **Code TODOs** — TODO/FIXME comments in code
+6. **New Task** — something that just came up
 
-사용자에게 번호로 선택하게 합니다.
+Let the user select by number.
 
-**진행중 작업이 있으면**: 코드를 확인해서 현재 구현 상태를 파악하고 "이어서 할까요?" 제안.
+**If there are in-progress tasks**: Check the code to assess current implementation state and suggest "Continue this?"
 
-**실행 가능성 판단**: 각 태스크에 대해 "지금 이 세션에서 구현/수정 가능한가"를 판단합니다.
-- 코드 변경으로 해결 가능 → 실행 가능 (버그 수정, UI 개선, 기능 추가 등)
-- 외부 의존성 필요 (서드파티 연동, 인프라 변경) → 계획만 가능
-- 기획/설계 논의 필요 → 사용자와 논의 후 결정
-실행 가능한 작업을 우선 제안합니다. "Feature라서 스킵"하지 않습니다 — Feature도 구현 가능하면 제안합니다.
+**Feasibility assessment**: For each task, determine "Can this be implemented/fixed in this session?"
+- Solvable via code changes → Feasible (bug fixes, UI improvements, feature additions, etc.)
+- Requires external dependencies (third-party integrations, infra changes) → Planning only
+- Needs design/spec discussion → Decide after discussing with user
+Prioritize feasible tasks. Don't skip "Feature" tasks — suggest them if they're implementable.
 
-**주의**: 다른 사람이 IN_PROGRESS인 태스크는 제외 (`task_context`는 자동으로 내 것만 표시).
+**Note**: Exclude tasks that are IN_PROGRESS by someone else (`task_context` automatically shows only your tasks).
 
-## 2단계: 태스크 설명 작성 (필수)
+## Step 2: Write Task Description (Required)
 
-작업을 시작하기 전에 **태스크에 설명을 작성합니다.** 다른 팀원이 이해할 수 있도록:
+Before starting work, **write a description for the task.** Make it understandable for other team members:
 
-- **문제/배경**: 왜 이 작업이 필요한가
-- **수정/구현 방법**: 어떻게 해결할 것인가
-- **영향 범위**: 어떤 파일/모듈에 영향을 주는가
+- **Problem/Background**: Why is this task needed?
+- **Approach**: How will it be resolved?
+- **Scope**: Which files/modules are affected?
 
-기존 태스크에 설명이 이미 있으면 보완만 합니다. 새 태스크면 반드시 작성합니다.
+If the existing task already has a description, just supplement it. For new tasks, always write one.
 
-## 3단계: 작업 시작
+## Step 3: Start Work
 
-MCP 도구로 작업을 시작합니다:
+Start work using MCP tools:
 
 ```
-# 기존 태스크
-work_start(task_id: "<TASK_ID>", description: "## 문제\n...\n## 수정 방법\n...\n## 영향\n...")
+# Existing task
+work_start(task_id: "<TASK_ID>", description: "## Problem\n...\n## Approach\n...\n## Scope\n...")
 
-# 새 태스크
-work_start(title: "제목", description: "## 문제\n...\n## 수정 방법\n...\n## 영향\n...")
+# New task
+work_start(title: "Title", description: "## Problem\n...\n## Approach\n...\n## Scope\n...")
 ```
 
-**work_start 응답의 linkage 섹션 확인:**
-- `has_milestone` 또는 `has_kr`이 false이면 추천 목록 확인
-- `recommended: true`인 항목이 있으면 연결:
+**Check the linkage section in the work_start response:**
+- If `has_milestone` or `has_kr` is false, review the suggestions
+- If an item has `recommended: true`, link it:
   - `milestone_link(task_id: "<id>", milestone_id: "<id>")`
   - `kr_link(task_id: "<id>", kr_id: "<id>")`
 
-## 4단계: 새 태스크 생성 (선택한 경우)
+## Step 4: Create New Task (If Selected)
 
-태그는 동적으로 조회합니다:
+Look up tags dynamically:
 
 ```
 tag_list()
 ```
 
-**태그 선택 가이드** — 작업 성격에 맞는 태그를 반드시 지정합니다:
-- **버그 수정** (기능이 안 되거나 깨진 것) → Bug 태그
-- **새 기능** (없던 것을 추가) → Feature 태그
-- **개선** (있는 것을 더 좋게) → Improvement 태그
+**Tag selection guide** — always assign a tag matching the nature of the work:
+- **Bug fix** (something broken or not working) → Bug tag
+- **New feature** (adding something that didn't exist) → Feature tag
+- **Improvement** (making something existing better) → Improvement tag
 
-## 5단계: 구현 (subagent 활용)
+## Step 5: Implementation (Leverage Subagents)
 
-선택된 태스크의 구현은 **subagent를 적극 활용**합니다:
+Implement the selected task by **actively using subagents**:
 
-### 분석 단계
-- **Explore subagent**로 관련 코드/파일 탐색을 위임 (메인 컨텍스트 오염 방지)
-- 여러 태스크를 동시에 선택한 경우, 각 태스크의 코드 분석을 **병렬 subagent**로 수행
+### Analysis Phase
+- Delegate code/file exploration to **Explore subagents** (prevents main context pollution)
+- If multiple tasks were selected, run code analysis for each via **parallel subagents**
 
-### 구현 단계
-- 독립적인 태스크는 **worktree isolation** subagent로 병렬 구현
-- 의존성이 있는 태스크는 순차 처리
-- 각 subagent에 명확한 목표 하나만 부여
+### Implementation Phase
+- Independent tasks → **worktree isolation** subagents for parallel implementation
+- Dependent tasks → sequential processing
+- Give each subagent exactly one clear objective
 
-### 검증 단계
-- 구현 완료 후 메인 컨텍스트에서 통합 검증
+### Verification Phase
+- After implementation, run integration verification in the main context
 
-### subagent 프롬프트 작성 가이드
+### Subagent Prompt Guide
 ```
-[태스크 제목]
-- 목표: (태스크 설명에서 발췌)
-- 수정 대상 파일: (영향 범위에서 발췌)
-- 제약사항: CLAUDE.md 규칙 준수, 테스트 포함
-- 결과물: 수정된 파일 목록과 변경 요약
+[Task title]
+- Objective: (from task description)
+- Target files: (from scope)
+- Constraints: Follow project conventions, include tests
+- Deliverable: List of modified files and change summary
 ```
 
-## 주의사항
-- **설명 작성을 건너뛰지 않는다** — 다른 사람이 왜/어떻게를 이해할 수 있어야 함
-- `--assignee me`는 `work_start`가 자동 처리
-- 진행중 작업이 여러 개면 하나에 집중하도록 제안
+## Important Notes
+- **Never skip writing a description** — others must understand the why and how
+- `--assignee me` is handled automatically by `work_start`
+- If multiple tasks are in progress, suggest focusing on one

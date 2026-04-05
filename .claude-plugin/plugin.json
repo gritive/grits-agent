@@ -1,8 +1,9 @@
 {
   "name": "grits",
-  "version": "0.1.7",
-  "description": "Grits — Agentic PM & OKR platform. Track tasks, OKR progress, and manage projects.",
+  "version": "0.1.8",
+  "description": "Agentic PM & OKR for Claude Code. Auto-track tasks from code changes, align work to OKR, get next-task recommendations.",
   "author": {
     "name": "Gritive"
-  }
+  },
+  "repository": "https://github.com/gritive/grits-agent"
 }
