@@ -46,13 +46,13 @@ Prioritize feasible tasks. Don't skip "Feature" tasks — suggest them if they'r
 
 ## Step 2: Write Task Description (Required)
 
-Before starting work, **write a description for the task.** Make it understandable for other team members:
+태스크 설명은 단순 메모가 아니라 **지식 축적의 기초 데이터**다. KPA, Decision Map 등 지식 시스템의 입력이 되므로, 나중에 맥락 없이 읽어도 "왜 이 작업이 필요했고, 무엇을 발견했는지" 이해할 수 있어야 한다.
 
-- **Problem/Background**: Why is this task needed?
-- **Approach**: How will it be resolved?
-- **Scope**: Which files/modules are affected?
+- **Problem/Background**: 왜 이 작업이 필요한가? 어떤 현상/불일치/요구가 있는가?
+- **Approach**: 어떻게 해결할 것인가?
+- **Scope**: 어떤 파일/모듈이 영향을 받는가?
 
-If the existing task already has a description, just supplement it. For new tasks, always write one.
+**기존 태스크의 설명이 비격식적이거나 모호하면 (예: 메모 수준의 한 줄) 위 구조로 다시 작성한다.** 제목을 정리하듯 설명도 정리한다. 이미 충분한 설명이 있으면 보충만 한다.
 
 ## Step 3: Start Work
 
