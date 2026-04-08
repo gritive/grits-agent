@@ -1,5 +1,4 @@
 ---
-name: done
 description: "Complete current work: verify → commit → update Grits → suggest next. Triggers on: 'done', 'task complete', 'finish work', 'grits done'."
 ---
 
@@ -85,6 +84,31 @@ work_done(
 - "Fixed"
 - "done"
 - "Bug fix"
+
+## Step 4b: Update Related Tasks (Batch Work)
+
+If the completed work addresses **multiple existing Grits tasks** (e.g., batch TODO processing, sprint cleanup), each individual task must also be updated — not just the umbrella task.
+
+**How to detect:** The umbrella task description references multiple task IDs, or the session involved fixes for tasks listed in `task_list()`.
+
+**For each related task**, use `task_update()`:
+```
+task_update(
+  id: "<TASK_ID>",
+  title: "Refined title if vague/informal",
+  description: "<existing>\n\n## 분석\n- Root cause / investigation findings\n\n## 수정\n- What was changed and why",
+  status: "DONE"
+)
+```
+
+**Rules:**
+1. Preserve the original description — append analysis, don't replace
+2. **## 분석**: root cause, what was investigated, what was found
+3. **## 수정**: what was changed (files, approach). Use **## 결론** instead if no code change was needed (already implemented, design decision deferred, etc.)
+4. Refine vague titles to be clear and actionable
+5. Batch updates in groups of 5 parallel calls for efficiency
+
+**Never skip this step** — batch work that only completes the umbrella task leaves individual tasks stale in the backlog. The individual task descriptions become the team's knowledge base.
 
 ## Step 5: Suggest Next Task
 
