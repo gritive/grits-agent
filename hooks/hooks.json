@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo \"$TOOL_INPUT\" | grits hook pre-edit",
+            "command": "grits hook pre-edit",
             "timeout": 3000
           }
         ]
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo \"$TOOL_INPUT\" | grits hook post-commit",
+            "command": "grits hook post-commit",
             "timeout": 5000
           }
         ]
