@@ -1,4 +1,5 @@
 ---
+name: start
 description: "Check next tasks → select → write description → start. Triggers on: 'what should I work on?', 'start work', 'grits start', 'next task'."
 ---
 

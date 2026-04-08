@@ -1,4 +1,5 @@
 ---
+name: done
 description: "Complete current work: verify → commit → update Grits → suggest next. Triggers on: 'done', 'task complete', 'finish work', 'grits done'."
 ---
 

@@ -1,0 +1,32 @@
+{
+  "name": "grits",
+  "displayName": "Grits — Agentic PM & OKR",
+  "version": "0.1.10",
+  "description": "Turn Cursor into a project-aware agent. Tasks auto-track from code changes, OKR alignment happens invisibly, and smart next-task recommendations keep you in flow. Connect Grits to Cursor and never manually update a ticket again.",
+  "author": {
+    "name": "Gritive",
+    "email": "charlie.choe@gritive.com"
+  },
+  "homepage": "https://grits.gritive.com",
+  "repository": "https://github.com/gritive/grits-agent",
+  "license": "MIT",
+  "keywords": [
+    "grits",
+    "project-management",
+    "okr",
+    "task-tracking",
+    "mcp",
+    "agentic",
+    "pm",
+    "productivity"
+  ],
+  "category": "developer-tools",
+  "tags": [
+    "pm",
+    "okr",
+    "task-management",
+    "mcp",
+    "agentic-workflow"
+  ],
+  "skills": "./skills/"
+}
