@@ -91,7 +91,10 @@ work_done(task_id: "<id>", message: "Summary of what was done")
 The Grits plugin uses a **PreToolUse hook** to enforce task registration before code changes.
 
 - If `work_start` hasn't been called before editing code files, a `[Grits]` message will appear
-- When you receive this message, **immediately call `work_start`** before continuing
+- The message may show a **recent task** from the previous session:
+  - If your work is related to the recent task, **continue it** with `work_start(task_id: "<ID>")`
+  - If you want to log additional context, use `task_comment` first, then `work_start`
+  - Only create a **new task** if the work is clearly unrelated
 - Config/docs files (`.md`, `.json`, `.yaml`, etc.) are exempt
 - After calling `work_start`, the hook won't interrupt again
 
