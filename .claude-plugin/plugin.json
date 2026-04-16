@@ -1,6 +1,6 @@
 {
   "name": "grits",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Agentic PM & OKR for Claude Code. Auto-track tasks from code changes, align work to OKR, get next-task recommendations.",
   "author": {
     "name": "Gritive"
