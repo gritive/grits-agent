@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Agentic PM for Claude Code — auto-track tasks, link work to OKR, get smart recommendations.",
-    "version": "0.1.16"
+    "version": "0.1.17"
   },
   "plugins": [
     {
