@@ -58,42 +58,6 @@ From the above + conversation history, build:
   - **근거**: [왜 이걸 선택했는가]
 ```
 
-### C. Record to Knowledge Graph (비자명한 결정이 1개 이상인 경우)
-
-추출한 결정·학습을 지식 그래프에 기록합니다. **Step 4의 `work_done()` 호출 이전에 실행**합니다.
-
-**결정(Decision) 기록** — 비자명한 결정마다:
-```
-record_decision(
-  title: "[결정 제목 — 간결하게]",
-  content: "트리거: [왜 필요했는가]\n대안: [고려한 다른 방법]\n근거: [왜 이걸 선택했는가]",
-  task_id: "<TASK_ID>"  // work_done과 동일한 task_id
-)
-```
-
-**학습(Learning) 기록** — 재사용 가능한 인사이트가 있으면 (선택):
-```
-record_learning(
-  title: "[학습 내용 제목]",
-  content: "[상세 내용 — 다음 번에 이 지식이 왜 유용한지 포함]",
-  task_id: "<TASK_ID>"
-)
-```
-
-**연결(Link)** — 같은 세션에서 결정/학습이 2개 이상이면 관계 연결 (선택):
-```
-link_knowledge(
-  source_id: "<node_id from record_decision>",
-  target_id: "<node_id from record_decision or record_learning>",
-  relationship_type: "IMPLEMENTS"  // IMPLEMENTS|AFFECTS|SUPERSEDES|DEPENDS_ON|LEARNED_FROM
-)
-```
-
-**규칙:**
-- 자명한 작업(타이포 수정, 린트 경고)에서는 생략해도 됨
-- `title`은 나중에 `query_context`로 검색될 수 있는 키워드를 포함
-- `task_id`는 항상 현재 태스크 ID를 전달 (컨텍스트 그래프 연결용)
-
 ## Step 4: Update Grits (Required)
 
 Mark the in-progress Grits task as complete. **Always use `work_done`** (not `task_done`) — it updates the description with results before closing.
@@ -161,4 +125,3 @@ Show the next recommended task and ask if the user wants to continue.
 - Push only when the user explicitly requests it
 - **Never skip the Grits update** — always call task_done after code changes
 - Completion comments must include **what, why, and how** — others should be able to read it later
-- **Knowledge graph 기록은 `work_done()` 호출 전에** — node_id를 description에 포함할 필요는 없지만, 기록 순서는 record_decision/record_learning → work_done
