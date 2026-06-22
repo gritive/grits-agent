@@ -116,16 +116,6 @@ grits config path               # Show config file path
 grits mcp                       # Start MCP server (stdin/stdout)
 ```
 
-### Hook Helpers
-
-Used by Claude Code plugin hooks. Not intended for direct use.
-
-```bash
-grits hook pre-edit             # Check work registration before code edits (stdin: TOOL_INPUT)
-grits hook post-commit          # Auto-comment Grits task after git commit (stdin: TOOL_INPUT)
-grits hook session-end          # Show active task info + cleanup on session end
-```
-
 ### Other
 
 ```bash

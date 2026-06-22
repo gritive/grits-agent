@@ -9,7 +9,7 @@
 
 ## What It Does
 
-- **Auto-tracking**: Code changes are automatically linked to tasks via hooks — no manual updates
+- **Work tracking**: The agent registers what you're working on and links it to your OKR as you go
 - **Smart start**: `/grits:start` scans your backlog, today's schedule, and code TODOs to recommend your next high-impact task
 - **OKR alignment**: Tasks auto-link to milestones and key results, so daily work connects to strategy
 - **Completion flow**: `/grits:done` validates, commits, updates Grits, and suggests what's next
@@ -36,9 +36,7 @@ claude plugin install grits-agent/grits
 
 ## Quick Start
 
-After installing, just start coding. The plugin hooks will remind you to register work when you edit files.
-
-Or explicitly:
+After installing, use the workflow skills:
 
 ```
 /grits:start          # See what to work on next
@@ -59,22 +57,15 @@ grits dashboard summary               # Work summary
 ## How It Works
 
 ```
-You code ──→ Hook detects edit ──→ Grits asks "what are you working on?"
-                                          │
-                                    work_start()
-                                          │
-                                    Task → IN_PROGRESS
-                                    Link → Milestone + KR
-                                          │
+/grits:start ──→ pick task ──→ work_start()
+                                     │
+                               Task → IN_PROGRESS
+                               Link → Milestone + KR
+                                     │
 You finish ──→ /grits:done ──→ Validate → Commit → task_done()
-                                          │
-                                    Suggest next task
+                                     │
+                               Suggest next task
 ```
-
-**3 Hooks** keep you on track:
-- `PreToolUse` — reminds to register work before code edits
-- `PostToolUse` — auto-comments commits to linked tasks
-- `Stop` — session summary on exit
 
 **3 Skills** guide the workflow:
 - `/grits:start` — find and start the right task

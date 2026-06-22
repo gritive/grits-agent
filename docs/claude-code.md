@@ -14,7 +14,6 @@ claude plugin install grits
 
 This installs everything at once:
 - **MCP Server** — `grits mcp` for task/OKR management
-- **Hooks** — PreToolUse (work registration), PostToolUse (commit auto-comment), Stop (session end cleanup)
 - **Skills** — `/start` (start work workflow), `/done` (complete work workflow), `/workflow` (Grits guide)
 
 ### Option 2: Manual MCP Configuration
@@ -32,7 +31,7 @@ Add to your Claude Code settings (`.claude/settings.json` or project-level):
 }
 ```
 
-> Note: Manual configuration only sets up the MCP server. Hooks and skills require the plugin.
+> Note: Manual configuration only sets up the MCP server. Skills require the plugin.
 
 ### Option 3: Claude Desktop
 
@@ -50,16 +49,6 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 ```
 
 ## What the Plugin Does
-
-### Hooks
-
-| Hook | Trigger | Behavior |
-| --- | --- | --- |
-| **PreToolUse** | Edit / Write / MultiEdit | Reminds agent to call `work_start` before modifying code files. Config/docs files (`.md`, `.json`, `.yaml`, etc.) are exempt. |
-| **PostToolUse** | Bash (git commit) | Auto-comments the commit message on the linked Grits task. Requires branch name `grits/<TASK_ID>`. |
-| **Stop** | Session end | Shows active task info and cleans up the work-active marker. |
-
-All hooks use `grits hook` subcommands — no external dependencies (python, jq, etc.).
 
 ### Skills
 
